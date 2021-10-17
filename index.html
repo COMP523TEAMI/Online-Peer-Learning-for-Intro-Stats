@@ -13,32 +13,40 @@
         <canvas id="myChart">
         </canvas>
     </div>
-    <div id="A">
-        <button type="button" class="decreaseButton"> Decrease A </button>
-        <input type="text" disabled="disabled"/>
-        <button type="button" class="increaseButton"> Increase A </button>
+    <div>
+        <div id="A">
+            <button type="button" class="decreaseButton"> Decrease A </button>
+            <input type="text" disabled="disabled" />
+            <button type="button" class="increaseButton"> Increase A </button>
+        </div>
+        <div id="B">
+            <button type="button" class="decreaseButton"> Decrease B </button>
+            <input type="text" disabled="disabled" />
+            <button type="button" class="increaseButton"> Increase B </button>
+        </div>
+        <div id="C">
+            <button type="button" class="decreaseButton"> Decrease C </button>
+            <input type="text" disabled="disabled" />
+            <button type="button" class="increaseButton"> Increase C </button>
+        </div>
+        <div id="D">
+            <button type="button" class="decreaseButton"> Decrease D </button>
+            <input type="text" disabled="disabled" />
+            <button type="button" class="increaseButton"> Increase D </button>
+        </div>
+        <div id="E">
+            <button type="button" class="decreaseButton"> Decrease E </button>
+            <input type="text" disabled="disabled" />
+            <button type="button" class="increaseButton"> Increase E </button>
+        </div>
     </div>
-    <div id="B">
-        <button type="button" class="decreaseButton"> Decrease B </button>
-        <input type="text" disabled="disabled"/>
-        <button type="button" class="increaseButton"> Increase B </button>
-    </div>
-    <div id="C">
-        <button type="button" class="decreaseButton"> Decrease C </button>
-        <input type="text" disabled="disabled"/>
-        <button type="button" class="increaseButton"> Increase C </button>
-    </div>
-    <div id="D">
-        <button type="button" class="decreaseButton"> Decrease D </button>
-        <input type="text" disabled="disabled"/>
-        <button type="button" class="increaseButton"> Increase D </button>
-    </div>
-    <div id="E">
-        <button type="button" class="decreaseButton"> Decrease E </button>
-        <input type="text" disabled="disabled"/>
-        <button type="button" class="increaseButton"> Increase E </button>
+    <div id="chatDiv">
+        <textarea id="messageHistory" disabled="disabled"></textarea>
+        <input type="text" id="typeBox">
+        <button type="button" id="sendButton">Send</button>
     </div>
     <script src="radarChart.js"></script>
+    <script src="chatRoomController.js"></script>
 </body>
 
 </html>
