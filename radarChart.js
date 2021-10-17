@@ -34,8 +34,8 @@ RealTimeController.prototype = {
 
     let labels = data.labels;
     for(let i = 0; i < labels.length; i ++) {
-      let inputField = document.getElementById(labels[i]).querySelectorAll('input[type=text]')[0]
-      inputField.value = data.datasets[0].data[i]
+      let inputField = document.getElementById(labels[i]).querySelectorAll('input[type=text]')[0];
+      inputField.value = data.datasets[0].data[i];
     };
 
     this.attachOnClickHandler(data.labels);
@@ -43,11 +43,27 @@ RealTimeController.prototype = {
 
   attachOnClickHandler: function (labels) {
     labels.forEach((label, index) => {
-      let button = document.getElementById(label).getElementsByTagName('button')[0];
-      button.addEventListener('click', () => {
+      let increaseButton = document.getElementById(label).getElementsByClassName('increaseButton')[0];
+      increaseButton.addEventListener('click', () => {
         // Update the remote value, and associated handlers will be fired
         let newValue = this.realtimeModel.elementAt('datasets', 0, 'data', index).value() + 1;
-        this.realtimeModel.elementAt('datasets', 0, 'data', index).value(newValue)
+        if(newValue > 40) {
+          return;
+        }
+        this.realtimeModel.elementAt('datasets', 0, 'data', index).value(newValue);
+
+        let label = this.chart.data.labels[index];
+        this.updateUI(label, newValue);
+      });
+      
+      let decreaseButton = document.getElementById(label).getElementsByClassName('decreaseButton')[0];
+      decreaseButton.addEventListener('click', () => {
+        // Update the remote value, and associated handlers will be fired
+        let newValue = this.realtimeModel.elementAt('datasets', 0, 'data', index).value() - 1;
+        if(newValue < 20) {
+          return;
+        }
+        this.realtimeModel.elementAt('datasets', 0, 'data', index).value(newValue);
 
         let label = this.chart.data.labels[index];
         this.updateUI(label, newValue);
@@ -96,7 +112,10 @@ let config = {
       },
       scale: {
         ticks: {
-          beginAtZero: true
+          beginAtZero: true,
+          min: 0,
+          max: 40,
+          stepSize: 1
         }
       }
   },
