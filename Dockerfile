@@ -1,1 +1,2 @@
 FROM convergencelabs/convergence-omnibus
+EXPOSE 80
