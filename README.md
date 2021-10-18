@@ -5,7 +5,7 @@ It was running on the docker container and we failed to deploy it to the web.
 <br>
 Will be back in a few weeks. :) 
 <br>
-[current website see](https://teami-staging.herokuapp.com/)
+[current website click here](https://teami-staging.herokuapp.com/)
 <br>
 The following link is a temporary presentation to what we suppose to have.
 <br>
