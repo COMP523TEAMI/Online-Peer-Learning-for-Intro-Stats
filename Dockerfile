@@ -1,2 +1,2 @@
 FROM convergencelabs/convergence-omnibus
-EXPOSE 8000
+EXPOSE 5000
