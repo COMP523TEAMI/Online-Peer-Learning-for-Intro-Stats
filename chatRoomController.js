@@ -6,6 +6,7 @@ const ChatRoomController = function () {
     // @todo: How to handle users
     this.userName = "User" + getRandomInt(40);
     this.chat;
+    this.success = true;
 }
 
 ChatRoomController.prototype = {
@@ -29,6 +30,11 @@ ChatRoomController.prototype = {
             .then(this.initializeChatRoomUI)
             .catch(error => {
                 console.error(error);
+                this.success = false;
+                let sendButton = document.getElementById('sendButton');
+                sendButton.addEventListener('click', () => {
+                alert("Cannot connect to the server!");
+                })
             });
     },
 
