@@ -2,7 +2,6 @@ const RealTimeController = function() {
     this.realtimeModel = 0;
     this.success = true;
     this.localData = 0;
-    this.initialFlag = true;
   };
   
 RealTimeController.prototype = {
@@ -22,7 +21,7 @@ RealTimeController.prototype = {
       ).then(model => {
         // The first entry point to start the program. Initialize the chart/material here.
         this.realtimeModel = model;
-        this.localData = model.root().value()
+        this.localData = model.root().value();
         this.initializeUI();
         this.initialAttachHandlerOnRemoteModel();
         this.attachHandlerOnRShinyView();
@@ -36,40 +35,25 @@ RealTimeController.prototype = {
     },
   
     initializeUI: function() {
-      let data = 0;
-      if (this.success) {
-        data = this.realtimeModel.root().value();
-      } else {
-        data = initialData;
-        this.localData = data;
-      }
-      console.log(this.localData);
-    // $(document).on('shiny:connected', () => {
-    //     console.log(10);
-    //     Shiny.setInputValue('acceptable', data.acceptable);
-    //     // Shiny.setInputValue('sampsize', data.sampsize);
-    //     Shiny.setInputValue('breaks', data.breaks);
-    //     Shiny.setInputValue('prob', data.prob);
-    // }
-    // );
-       
+      Shiny.setInputValue('acceptable', this.localData['acceptable']);
+      Shiny.setInputValue('sampsize', this.localData['sampsize']);
+      Shiny.setInputValue('prob', this.localData['prob']);
+      Shiny.setInputValue('breaks', this.localData['breaks']);   
     },
 
     attachHandlerOnRShinyView: function() {
         // @todo what if there are no keys?
-        // Reset values when opened a new window
         $(document).on('shiny:inputchanged', (event) => {
             let data = this.realtimeModel.root().value();
             // Somehow RShiny fires two events
             if (event.value == this.localData[event.name]) {
                 return ;
             } else {
-                console.log(event);
-                console.log('[input] ' + event.name + ': ' + event.value);
+                // console.log(event);
+                // console.log('[input] ' + event.name + ': ' + event.value);
                 if (event.name == 'runonce' || event.name == "run100") {
-                    console.log(this.localData);
-                    this.localData[event.name] += 1;
-                    this.realtimeModel.elementAt('input', event.name).value(this.localData[event.name]);
+                    this.localData.input[event.name] += 1;
+                    this.realtimeModel.elementAt('input', event.name).value(this.localData.input[event.name]);
                 }
                 else {
                     this.localData[event.name] = event.value;
@@ -116,8 +100,8 @@ const initialData = {
         sampsize: '1',
         prob: 40,
         breaks: 70,
-        runonce: 0,
-        run100: 0
+        runonce: 1,
+        run100: 1
     },
 output: {
 
@@ -127,15 +111,3 @@ output: {
   
 const rtc = new RealTimeController();
 rtc.init()
-// let data = initialData
-
-//  $(document).on('shiny:inputchanged', function(event) {
-    
-//  });
-
-//  $(document).on('shiny:inputchanged', function(event) {
-//     Shiny.setInputValue('acceptable', data.acceptable);
-//     Shiny.setInputValue('sampsize', data.sampsize);
-//     Shiny.setInputValue('breaks', data.breaks);
-//     Shiny.setInputValue('prob', data.prob);
-//  })
