@@ -2,6 +2,7 @@ const RealTimeController = function() {
     this.realtimeModel = 0;
     this.success = true;
     this.localData = 0;
+    this.chatRoomController;
   };
   
 RealTimeController.prototype = {
@@ -38,7 +39,10 @@ RealTimeController.prototype = {
       Shiny.setInputValue('acceptable', this.localData['acceptable']);
       Shiny.setInputValue('sampsize', this.localData['sampsize']);
       Shiny.setInputValue('prob', this.localData['prob']);
-      Shiny.setInputValue('breaks', this.localData['breaks']);   
+      Shiny.setInputValue('breaks', this.localData['breaks']);
+      // launch chatServices
+      this.chatRoomController = new ChatRoomController(user[0].username);
+      this.chatRoomController.init();
     },
 
     attachHandlerOnRShinyView: function() {
@@ -72,7 +76,7 @@ RealTimeController.prototype = {
         this.attachHandlerOnRemoteModelProperty('input', 'run100');
     },
 
-    // reactivity: Input/Output
+    // reactivity: Input
     attachHandlerOnRemoteModelProperty: function(reactivity, key) {
         if (key != "sampsize") {
             this.realtimeModel.elementAt(reactivity, key).on(
@@ -103,11 +107,18 @@ const initialData = {
         runonce: 1,
         run100: 1
     },
-output: {
-
-}
 };
-  
   
 const rtc = new RealTimeController();
 rtc.init()
+
+const user = [{ username: "user A",
+email: "user@example.com",
+firstName: "Joe",
+lastName: "User",
+displayName: "Joe A"},
+{ username: "user B",
+email: "user@example.com",
+firstName: "Joe",
+lastName: "User",
+displayName: "Joe B"}];

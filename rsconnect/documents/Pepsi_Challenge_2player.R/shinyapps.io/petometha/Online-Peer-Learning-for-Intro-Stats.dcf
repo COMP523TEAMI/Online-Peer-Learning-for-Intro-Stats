@@ -5,10 +5,10 @@ account: petometha
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5012197
-bundleId: 5222580
+bundleId: 5316465
 url: https://petometha.shinyapps.io/Online-Peer-Learning-for-Intro-Stats/
-when: 1636259281.39763
-lastSyncTime: 1636259281.39763
+when: 1638394868.85087
+lastSyncTime: 1638394868.85087
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: chatRoomController.js|config.js|Dockerfile|heroku.yml|index.html|package-lock.json|radarChart.js|README.md|node_modules
+ignoredFiles: chatRoomController.js|config.js|Dockerfile|heroku.yml|index.html|package-lock.json|radarChart.js|README.md|www/chatRoomController.js
