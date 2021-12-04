@@ -1,9 +1,9 @@
-// const getRandomInt = function (max) {
-//     return Math.floor(Math.random() * max);
-// };
+const getRandomInt = function (max) {
+    return Math.floor(Math.random() * max);
+};
 
-const ChatRoomController = function (username) {
-    this.username = username;
+const ChatRoomController = function () {
+    this.username = "User " + getRandomInt(100);
     this.chat;
     this.success = true;
 }
@@ -15,7 +15,7 @@ ChatRoomController.prototype = {
             .then(domain => {
                 this.domain = domain;
                 return this.domain.chat().create({
-                    id: "chatroom",
+                    id: "chatroomNormal",
                     type: "room",
                     membership: "public",
                     // @todo:  Might be a problem
@@ -32,7 +32,7 @@ ChatRoomController.prototype = {
                 this.success = false;
                 let sendButton = document.getElementById('sendButton');
                 sendButton.addEventListener('click', () => {
-                alert("Cannot connect to the server!");
+                    alert("Cannot connect to the server!");
                 })
             });
     },
@@ -78,7 +78,6 @@ ChatRoomController.prototype = {
 
 
         $('#sendButton').on('click', () => {
-            console.log(10);
             let typeBox = document.getElementById('typeBox');
             let value = typeBox.value;
             if (value && value.trim()) {

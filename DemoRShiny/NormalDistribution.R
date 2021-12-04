@@ -30,7 +30,7 @@ ui <- fluidPage(
     tags$head(tags$script(src="https://cdn.jsdelivr.net/npm/@convergence/convergence/convergence.global.min.js")),
     tags$head(tags$script(src="config.js")),
     tags$head(tags$script(src="shinyJSController.js")),
-    # tags$head(tags$script(src="chatRoomController.js")),
+    tags$head(tags$script(src="chatRoomController.js")),
     
     # App title ----
     titlePanel(h1("Normal Distribution", align = "center")),

@@ -14,7 +14,6 @@ ChatRoomController.prototype = {
         Convergence.connectAnonymously(DOMAIN_URL, this.userName)
             .then(domain => {
                 this.domain = domain;
-                console.log(this.userName);
                 return this.domain.chat().create({
                     id: "radarChartChar",
                     type: "room",
@@ -67,7 +66,6 @@ ChatRoomController.prototype = {
 
         let sendButton = document.getElementById('sendButton');
         sendButton.addEventListener('click', () => {
-            console.log(10);
             let typeBox = document.getElementById('typeBox');
             let value = typeBox.value;
             if (value && value.trim()) {

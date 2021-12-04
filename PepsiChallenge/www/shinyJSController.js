@@ -41,7 +41,7 @@ RealTimeController.prototype = {
       Shiny.setInputValue('prob', this.localData['prob']);
       Shiny.setInputValue('breaks', this.localData['breaks']);
       // launch chatServices
-      this.chatRoomController = new ChatRoomController(user[0].username);
+      this.chatRoomController = new ChatRoomController();
       this.chatRoomController.init();
     },
 
