@@ -3,6 +3,8 @@
 const RealTimeController = function() {
   this.realtimeModel = 0;
   this.chart = 0;
+  this.success = true;
+  this.localData = 0;
 };
 
 RealTimeController.prototype = {
@@ -24,11 +26,23 @@ RealTimeController.prototype = {
       this.realtimeModel = model;
       this.initializeUI();
       this.attachHandlerOnRemoteModel();
-    })
+    }).catch(error => 
+      {
+        alert('Cannot connect to Convergence Backend!');
+        this.success=false;
+      }
+      )
   },
 
   initializeUI: function() {
-    let data = this.realtimeModel.root().value();
+    let data = 0;
+    if (this.success) {
+      data = this.realtimeModel.root().value();
+    } else {
+      data = initialData;
+      this.localData = data;
+    }
+    
     config.data = data;
     this.chart = new Chart(document.getElementById('myChart'), config);
 
@@ -37,7 +51,6 @@ RealTimeController.prototype = {
       let inputField = document.getElementById(labels[i]).querySelectorAll('input[type=text]')[0];
       inputField.value = data.datasets[0].data[i];
     };
-
     this.attachOnClickHandler(data.labels);
   },
 
@@ -46,6 +59,7 @@ RealTimeController.prototype = {
       let increaseButton = document.getElementById(label).getElementsByClassName('increaseButton')[0];
       increaseButton.addEventListener('click', () => {
         // Update the remote value, and associated handlers will be fired
+        if (this.success) {
         let newValue = this.realtimeModel.elementAt('datasets', 0, 'data', index).value() + 1;
         if(newValue > 40) {
           return;
@@ -54,19 +68,44 @@ RealTimeController.prototype = {
 
         let label = this.chart.data.labels[index];
         this.updateUI(label, newValue);
+        } 
+        
+        else {
+          let newValue = this.localData.datasets.data[index] + 1;
+        if(newValue > 40) {
+          return;
+        }
+        this.localData.datasets.data[index] = newValue;
+
+        let label = this.chart.data.labels[index];
+        this.updateUI(label, newValue);
+        }
+        
       });
       
       let decreaseButton = document.getElementById(label).getElementsByClassName('decreaseButton')[0];
       decreaseButton.addEventListener('click', () => {
         // Update the remote value, and associated handlers will be fired
-        let newValue = this.realtimeModel.elementAt('datasets', 0, 'data', index).value() - 1;
-        if(newValue < 20) {
+        if(this.success) {
+          let newValue = this.realtimeModel.elementAt('datasets', 0, 'data', index).value() - 1;
+          if(newValue < 20) {
+            return;
+          }
+          this.realtimeModel.elementAt('datasets', 0, 'data', index).value(newValue);
+  
+          let label = this.chart.data.labels[index];
+          this.updateUI(label, newValue);
+        }
+       else {
+        let newValue = this.localData.datasets.data[index] - 1;
+        if(newValue > 40) {
           return;
         }
-        this.realtimeModel.elementAt('datasets', 0, 'data', index).value(newValue);
+        this.localData.datasets.data[index] = newValue;
 
         let label = this.chart.data.labels[index];
         this.updateUI(label, newValue);
+       }
       });
     });
   },
