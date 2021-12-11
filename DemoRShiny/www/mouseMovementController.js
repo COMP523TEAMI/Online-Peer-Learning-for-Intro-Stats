@@ -16,7 +16,7 @@ MouseMovementController.prototype = {
                 this.domain = domain;
                 return this.domain.activities().join(
                     "mouseCursors",
-                    "mouseCursorAcivityPepsi",
+                    "mouseCursorAcivityDemo",
                     {
                         autoCreate: {
                             ephemeral: true

@@ -31,6 +31,7 @@ ui <- fluidPage(
     tags$head(tags$script(src="config.js")),
     tags$head(tags$script(src="shinyJSController.js")),
     tags$head(tags$script(src="chatRoomController.js")),
+    tags$head(tags$script(src="mouseMovementController.js")),
     
     # App title ----
     titlePanel(h1("Normal Distribution", align = "center")),
