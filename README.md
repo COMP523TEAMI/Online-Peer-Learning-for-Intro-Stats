@@ -9,7 +9,7 @@ The frontend and the backend of our project are deployed through Heroku. The fro
 
 The Convergence Docker server, which enables a Google Doc-like online collaboration between students playing the intro-stat learning materials, is deployed through an AWS EC2 instance.
 
-The R-shiny apps that constitute the learning materials are deployed through a third-party cloud R server, [shinyapps.io](https://www.shinyapps.io/). Users can deploy the R-shiny apps by clicking the “Publish” button in their R Studio.
+The R-shiny apps that constitute the learning materials are deployed through a third-party cloud R server, [shinyapps.io](https://www.shinyapps.io/). Users can deploy the R-shiny apps by clicking the “Publish” button in their R Studio. This is just a temporary solution. We think it would be better to deploy the apps on our own server, because then we won't expose the R-shiny apps to the outsiders who don't have the accessing credentials, and there will be fewer dependencies and fewer moving parts. 
 
 ## About the online collaboration
 ### Overview
