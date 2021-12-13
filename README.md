@@ -15,7 +15,7 @@ The R-shiny apps that constitute the learning materials are deployed through a t
 ### Overview
 Currently, our collaboration features include sharing input data across clients, a chat function, and sharing mouse cursors across clients. Three JS files enable these features respectively: [shinyJSController.js](/DemoRShiny/www/shinyJSController.js), [chatRoomController.js](/DemoRShiny/www/chatRoomController.js), and [mouseMovementController.js](/DemoRShiny/www/mouseMovementController.js). To make sure collaboration features work as intended, these files need to be put in a folder named “www” in the same directory as the R-shiny app, and get uploaded to shinyapps.io together with it. Then we will add the link to the R-shiny app to our frontend dashboard. This process needs to be streamlined, and we have yet to find a way to do so.
 
-If you want to experience the collaboration features locally on your machine, you can use either the files in the PepsiChallenge folder (courtesy to Dr. Peter Halpin for providing the basic R-Shiny app) or the files in the DemoRShiny folder. You need to download Docker from its [official site](https://www.docker.com/get-started). Then run this command in your console:
+If you want to experience the collaboration features locally on your machine, you can use either the files in the PepsiChallenge folder (courtesy of Dr. Peter Halpin for providing the basic R-Shiny app) or the files in the DemoRShiny folder. You need to download Docker from its [official site](https://www.docker.com/get-started). Then run this command in your console:
 ````
 docker run -p "8000:80" --name convergence convergencelabs/convergence-omnibus
 ````
